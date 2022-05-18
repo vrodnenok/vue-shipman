@@ -1,22 +1,27 @@
 <template>
-  <div>list of todo items</div>
-  <div v-for="item in list" :key="item.id" >{{item.description}}</div>
+  <TodoListItem
+    v-for="item in list"
+    :key="item.id"
+    v-model:done="item.done"
+    v-model:prioritized="item.prioritized"
+    :task="item"
+  ></TodoListItem>
 </template>
 
 <script lang="ts">
-import type {TaskItem} from "@/interfaces/Task";
+import type { TaskItem } from "@/interfaces/TaskItem";
+import TodoListItem from "@/components/todo/TodoListItem.vue";
 
 export default {
   name: "TodoList",
+  components: { TodoListItem },
   props: {
     list: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
